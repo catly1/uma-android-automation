@@ -19,7 +19,6 @@ import org.opencv.core.Point
 import java.text.DecimalFormat
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
-import kotlin.intArrayOf
 
 /**
  * Main driver for bot activity and navigation.
@@ -127,6 +126,103 @@ class Game(val myContext: Context) {
             return result
         }
     }
+
+	private val mcqueenRaces = listOf(
+			Date(1, "Late", 12, 24),
+			Date(2, "Early", 4, 31),
+			Date(2, "Late", 5, 34),
+			Date(2, "Late", 5, 34),
+			Date(2, "Late", 6, 36),
+			Date(2, "Early", 11, 45),
+			Date(2, "Late", 11, 46),
+			Date(2, "Late", 12, 48),
+			Date(3, "Late", 3, 54),
+			Date(3, "Early", 11, 69),
+			Date(3, "Late", 11, 70),
+			Date(3, "Late", 12, 72)
+	)
+
+	private val symboliRaces = listOf(
+		// Junior Class
+		// Hopeful Stakes: First Year, December 2
+		// From trainingRaceDateList: Date(1, "Late", 12, 24) (commented as //DEC2)
+		Date(1, "Late", 12, 24),
+
+		// Classic Class
+		// Takarazuka Kinen: Second Year, June 2
+		// From trainingRaceDateList: Date(2, "Late", 6, 36) (commented as //JUN2)
+		Date(2, "Late", 6, 36),
+
+		// Queen Elizabeth II Cup: Second Year, November 1
+		// From trainingRaceDateList: Date(2, "Early", 11, 45) (commented as //NOV1)
+		Date(2, "Early", 11, 45),
+
+		// Japan Cup: Second Year, November 2
+		// From trainingRaceDateList: Date(2, "Late", 11, 46) (commented as //NOV2)
+		Date(2, "Late", 11, 46),
+
+		// Senior Class
+		// Osaka Hai: Third Year, March 2
+		// From trainingRaceDateList: Date(3, "Late", 3, 54) (commented as //MAR2)
+		Date(3, "Late", 3, 54),
+
+		// Takarazuka Kinen: Third Year, June 2
+		// From trainingRaceDateList: Date(3, "Late", 6, 60) (commented as //JUN2)
+		Date(3, "Late", 6, 60),
+
+		// Tenno Sho (Autumn): Third Year, October 2
+		// From trainingRaceDateList: Date(3, "Late", 10, 68) (commented as //OCT2)
+		Date(3, "Late", 10, 68),
+
+		// Queen Elizabeth II Cup: Third Year, November 1
+		// From trainingRaceDateList: Date(3, "Early", 11, 69) (commented as //NOV1)
+		Date(3, "Early", 11, 69)
+	)
+
+	private val speRaces = listOf(
+		// Junior Class
+		// Hopeful Stakes: First Year, December 2
+		// From trainingRaceDateList: Date(1, "Late", 12, 24)
+		Date(1, "Late", 12, 24),
+
+		// Classic Class
+		// Satsuki Sho: Second Year, April 1
+		// From trainingRaceDateList: Date(2, "Early", 4, 31)
+		Date(2, "Early", 4, 31),
+
+		// Takarazuka Kinen: Second Year, June 2
+		// From trainingRaceDateList: Date(2, "Late", 6, 36)
+		Date(2, "Late", 6, 36),
+
+		// Queen Elizabeth II Cup: Second Year, November 1
+		// From trainingRaceDateList: Date(2, "Early", 11, 45)
+		Date(2, "Early", 11, 45),
+
+		// Japan Cup: Second Year, November 2
+		// From trainingRaceDateList: Date(2, "Late", 11, 46)
+		Date(2, "Late", 11, 46),
+
+		// Arima Kinen: Second Year, December 2
+		// From trainingRaceDateList: Date(2, "Late", 12, 48)
+		Date(2, "Late", 12, 48),
+
+		// Senior Class
+		// Osaka Hai: Third Year, March 2
+		// From trainingRaceDateList: Date(3, "Late", 3, 54)
+		Date(3, "Late", 3, 54),
+
+		// Takarazuka Kinen: Third Year, June 2
+		// From trainingRaceDateList: Date(3, "Late", 6, 60)
+		Date(3, "Late", 6, 60),
+
+		// Tenno Sho (Autumn): Third Year, October 2
+		// From trainingRaceDateList: Date(3, "Late", 10, 68)
+		Date(3, "Late", 10, 68),
+
+		// Queen Elizabeth II Cup: Third Year, November 1
+		// From trainingRaceDateList: Date(3, "Early", 11, 69)
+		Date(3, "Early", 11, 69)
+	)
 
 	data class Date(
 		val year: Int,
@@ -483,7 +579,8 @@ class Game(val myContext: Context) {
 
 		// If the setting to force racing extra races is enabled, always return true.
 		if (enableForceRacing) return true
-
+		if (speRaces.contains(currentDate) && !raceRepeatWarningCheck) return true
+		
 		return enableFarmingFans && dayNumber % daysToRunExtraRaces == 0 && !raceRepeatWarningCheck &&
 				imageUtils.findImage("race_select_extra_locked_uma_finals", tries = 1, region = imageUtils.regionBottomHalf).first == null &&
 				imageUtils.findImage("race_select_extra_locked", tries = 1, region = imageUtils.regionBottomHalf).first == null &&
