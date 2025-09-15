@@ -128,18 +128,56 @@ class Game(val myContext: Context) {
     }
 
 	private val mcqueenRaces = listOf(
-			Date(1, "Late", 12, 24),
-			Date(2, "Early", 4, 31),
-			Date(2, "Late", 5, 34),
-			Date(2, "Late", 5, 34),
-			Date(2, "Late", 6, 36),
-			Date(2, "Early", 11, 45),
-			Date(2, "Late", 11, 46),
-			Date(2, "Late", 12, 48),
-			Date(3, "Late", 3, 54),
-			Date(3, "Early", 11, 69),
-			Date(3, "Late", 11, 70),
-			Date(3, "Late", 12, 72)
+		// Year 1
+		// Hopeful Stakes
+		// Late, December
+		Date(1, "Late", 12, 24),
+
+		// Year 2
+		// Satsuki Sho
+		// Early, April
+		Date(2, "Early", 4, 31),
+
+		// Race Name Unknown
+		// Late, May
+		Date(2, "Late", 5, 34),
+
+		// Race Name Unknown
+		// Late, May
+		Date(2, "Late", 5, 34),
+
+		// Takarazuka Kinen
+		// Late, June
+//		Date(2, "Late", 6, 36),
+
+		// Queen Elizabeth II Cup
+		// Early, November
+		Date(2, "Early", 11, 45),
+
+		// Japan Cup
+		// Late, November
+		Date(2, "Late", 11, 46),
+
+		// Arima Kinen
+		// Late, December
+//		Date(2, "Late", 12, 48),
+
+		// Year 3
+		// Osaka Hai
+		// Late, March
+		Date(3, "Late", 3, 54),
+
+		// Queen Elizabeth II Cup
+		// Early, November
+//		Date(3, "Early", 11, 69),
+
+		// Race Name Unknown
+		// Late, November
+//		Date(3, "Late", 11, 70),
+
+		// Race Name Unknown
+		// Late, December
+//		Date(3, "Late", 12, 72)
 	)
 
 	private val symboliRaces = listOf(
@@ -579,7 +617,7 @@ class Game(val myContext: Context) {
 
 		// If the setting to force racing extra races is enabled, always return true.
 		if (enableForceRacing) return true
-		if (speRaces.contains(currentDate) && !raceRepeatWarningCheck) return true
+		if (mcqueenRaces.contains(currentDate) && !raceRepeatWarningCheck) return true
 		
 		return enableFarmingFans && dayNumber % daysToRunExtraRaces == 0 && !raceRepeatWarningCheck &&
 				imageUtils.findImage("race_select_extra_locked_uma_finals", tries = 1, region = imageUtils.regionBottomHalf).first == null &&
