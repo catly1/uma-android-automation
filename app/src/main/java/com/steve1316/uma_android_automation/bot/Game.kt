@@ -127,6 +127,42 @@ class Game(val myContext: Context) {
         }
     }
 
+	private val daiwaRaces = listOf(
+		// Junior Class
+		// Asahi Hai Futurity Stakes: First Year, December 1
+		Date(1, "Early", 12, 23),
+		// Hanshin Juvenile Fillies: First Year, December 1
+		Date(1, "Early", 12, 23),
+		// Hopeful Stakes: First Year, December 2
+		Date(1, "Late", 12, 24),
+
+		// Classic Class
+		// NHK Mile Cup: Second Year, May 1
+		Date(2, "Early", 5, 33),
+		// Yasuda Kinen: Second Year, June 1
+		Date(2, "Early", 6, 35),
+		// Takarazuka Kinen: Second Year, June 2
+		Date(2, "Late", 6, 36),
+		// Japan Cup: Second Year, November 2
+		Date(2, "Late", 11, 46),
+		// Mile Championship: Second Year, November 2
+		Date(2, "Late", 11, 46),
+
+		// Senior Class
+		// Victoria Mile: Third Year, May 1
+		Date(3, "Early", 5, 57),
+		// Yasuda Kinen: Third Year, June 1
+		Date(3, "Early", 6, 59),
+		// Takarazuka Kinen: Third Year, June 2
+		Date(3, "Late", 6, 60),
+		// Queen Elizabeth II Cup: Third Year, November 1
+		Date(3, "Early", 11, 69),
+		// Japan Cup: Third Year, November 2
+		Date(3, "Late", 11, 70),
+		// Mile Championship: Third Year, November 2
+		Date(3, "Late", 11, 70)
+	)
+
 	private val mcqueenRaces = listOf(
 		// Year 1
 		// Hopeful Stakes
