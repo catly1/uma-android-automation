@@ -140,6 +140,12 @@
             app:summary="Hides the log messages regarding the string comparison process."
             app:title="Hide String Comparison Results" />
 
+        <MultiSelectListPreference
+            app:key="userDefinedSpecialRaces"
+            app:title="Select User Defined Special Races"
+            app:summary="None"
+            app:dialogTitle="Choose Races" />
+
     </PreferenceCategory>
 
 </PreferenceScreen>

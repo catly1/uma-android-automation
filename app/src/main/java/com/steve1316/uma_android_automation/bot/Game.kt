@@ -127,7 +127,86 @@ class Game(val myContext: Context) {
         }
     }
 
-	private var userDefinedSpecialRaces: List<Date> = emptyList()
+	private val userDefinedSpecialRaces: List<Date> by lazy {
+		sharedPreferences.getStringSet("userDefinedSpecialRaces", emptySet())?.mapNotNull { raceString ->
+			try {
+				// Format is "index:year,phase,month,turnNumber"
+				// We only care about the part after the first colon
+				val dataString = raceString.substringAfter(":", "")
+				val parts = dataString.split(',')
+				if (parts.size == 4) {
+					val year = parts[0].toInt()
+					val phase = parts[1]
+					val month = parts[2].toInt()
+					val turnNumber = parts[3].toInt()
+					Date(year, phase, month, turnNumber)
+				} else {
+					Log.e(tag, "Invalid format for userDefinedSpecialRaces entry: $raceString. Expected 4 parts, got ${parts.size}")
+					null
+				}
+			} catch (e: NumberFormatException) {
+				Log.e(tag, "Error parsing number in userDefinedSpecialRaces entry '$raceString': ${e.message}")
+				null
+			} catch (e: Exception) {
+				Log.e(tag, "Unexpected error parsing userDefinedSpecialRaces entry '$raceString': ${e.message}")
+				null
+			}
+		} ?: emptyList()
+	}
+
+	val raceDates = listOf(
+		// Year 1
+		// Turn 1 to 24 (2 turns per month for 12 months)
+		Date(year = 1, phase = "Early", month = 12, turnNumber = 23), // Asahi Hai Futurity Stakes
+		Date(year = 1, phase = "Early", month = 12, turnNumber = 23), // Hanshin Juvenile Fillies
+		Date(year = 1, phase = "Late", month = 12, turnNumber = 24),  // Hopeful Stakes
+
+		// Year 2
+		// Turn 25 to 48 (2 turns per month for 12 months)
+		Date(year = 2, phase = "Early", month = 4, turnNumber = 31),  // Osaka Hai (Assuming April is the 4th month, 3 months * 2 turns + 1 early turn = 7 turns from start of year. 24 + 7 = 31)
+		Date(year = 2, phase = "Late", month = 4, turnNumber = 32),   // Satsuki Sho
+		Date(year = 2, phase = "Early", month = 5, turnNumber = 33),  // NHK Mile Cup
+		Date(year = 2, phase = "Late", month = 5, turnNumber = 34),   // Japanese Oaks
+		Date(year = 2, phase = "Late", month = 5, turnNumber = 34),   // Tokyo Yushun (Japanese Derby)
+		Date(year = 2, phase = "Early", month = 6, turnNumber = 35),  // Yasuda Kinen
+		Date(year = 2, phase = "Late", month = 6, turnNumber = 36),   // Takarazuka Kinen
+		Date(year = 2, phase = "Early", month = 7, turnNumber = 37),  // Japan Dirt Derby
+		Date(year = 2, phase = "Early", month = 10, turnNumber = 43), // Sprinters Stakes
+		Date(year = 2, phase = "Late", month = 10, turnNumber = 44),  // Shuka Sho
+		Date(year = 2, phase = "Late", month = 10, turnNumber = 44),  // Kikuka Sho
+		Date(year = 2, phase = "Late", month = 10, turnNumber = 44),  // Tenno Sho (Autumn)
+		Date(year = 2, phase = "Early", month = 11, turnNumber = 45), // JBC Classic
+		Date(year = 2, phase = "Early", month = 11, turnNumber = 45), // JBC Ladies' Classic
+		Date(year = 2, phase = "Early", month = 11, turnNumber = 45), // JBC Sprint
+		Date(year = 2, phase = "Late", month = 11, turnNumber = 46),  // Queen Elizabeth II Cup
+		Date(year = 2, phase = "Late", month = 11, turnNumber = 46),  // Japan Cup
+		Date(year = 2, phase = "Late", month = 11, turnNumber = 46),  // Mile Championship
+		Date(year = 2, phase = "Early", month = 12, turnNumber = 47), // Champions Cup
+		Date(year = 2, phase = "Late", month = 12, turnNumber = 48),  // Arima Kinen
+		Date(year = 2, phase = "Late", month = 12, turnNumber = 48),  // Tokyo Daishoten
+
+		// Year 3
+		// Turn 49 to 72 (2 turns per month for 12 months)
+		Date(year = 3, phase = "Late", month = 2, turnNumber = 52),   // February Stakes (Assuming Feb is the 2nd month, 1 month * 2 turns + 2 late turns = 4 turns from start of year. 48 + 4 = 52)
+		Date(year = 3, phase = "Late", month = 3, turnNumber = 54),   // Osaka Hai
+		Date(year = 3, phase = "Late", month = 3, turnNumber = 54),   // Takamatsunomiya Kinen
+		Date(year = 3, phase = "Late", month = 4, turnNumber = 56),   // Satsuki Sho (Spring)
+		Date(year = 3, phase = "Early", month = 5, turnNumber = 57),  // Victoria Mile
+		Date(year = 3, phase = "Late", month = 5, turnNumber = 58),   // Yushun Himba
+		Date(year = 3, phase = "Late", month = 6, turnNumber = 60),   // Takarazuka Kinen
+		Date(year = 3, phase = "Late", month = 6, turnNumber = 60),   // Tenno Sho
+		Date(year = 3, phase = "Early", month = 10, turnNumber = 67), // Sprinters Stakes
+		Date(year = 3, phase = "Late", month = 10, turnNumber = 68),  // Tenno Sho (Autumn)
+		Date(year = 3, phase = "Early", month = 11, turnNumber = 69), // JBC Classic
+		Date(year = 3, phase = "Early", month = 11, turnNumber = 69), // JBC Ladies' Classic
+		Date(year = 3, phase = "Early", month = 11, turnNumber = 69), // JBC Sprint
+		Date(year = 3, phase = "Late", month = 11, turnNumber = 70),  // Queen Elizabeth II Cup
+		Date(year = 3, phase = "Late", month = 11, turnNumber = 70),  // Japan Cup
+		Date(year = 3, phase = "Late", month = 11, turnNumber = 70),  // Mile Championship
+		Date(year = 3, phase = "Early", month = 12, turnNumber = 71), // Champions Cup
+		Date(year = 3, phase = "Late", month = 12, turnNumber = 72),  // Arima Kinen
+		Date(year = 3, phase = "Late", month = 12, turnNumber = 72)   // Tokyo Daishoten
+	)
 
 	private val daiwaRaces = listOf(
 		// Junior Class
