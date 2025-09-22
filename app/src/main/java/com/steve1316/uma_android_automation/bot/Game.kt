@@ -127,6 +127,55 @@ class Game(val myContext: Context) {
         }
     }
 
+	private val golshiRaces = listOf(
+		// Year 1
+		// Hopeful Stakes
+		// Late, December
+		Date(1, "Late", 12, 24),
+
+		// Year 2
+		// Satsuki Sho
+		// Early, April
+		Date(2, "Early", 4, 31),
+
+		// Race Japanese Derby
+		// Late, May
+		Date(2, "Late", 5, 34),
+
+		// Takarazuka Kinen
+		// Late, June
+//		Date(2, "Late", 6, 36),
+
+		// Queen Elizabeth II Cup
+		// Early, November
+		Date(2, "Early", 11, 45),
+
+//		// Japan Cup
+//		// Late, November
+//		Date(2, "Late", 11, 46),
+
+		// Arima Kinen
+		// Late, December
+//		Date(2, "Late", 12, 48),
+
+		// Year 3
+		// Osaka Hai
+		// Late, March
+		Date(3, "Late", 3, 54),
+
+		// Queen Elizabeth II Cup
+		// Early, November
+//		Date(3, "Early", 11, 69),
+
+		// Race Name Unknown
+		// Late, November
+//		Date(3, "Late", 11, 70),
+
+		// Race Name Unknown
+		// Late, December
+//		Date(3, "Late", 12, 72)
+	)
+
 	private val mcqueenRaces = listOf(
 		// Year 1
 		// Hopeful Stakes
@@ -142,9 +191,9 @@ class Game(val myContext: Context) {
 		// Late, May
 		Date(2, "Late", 5, 34),
 
-		// Race Name Unknown
-		// Late, May
-		Date(2, "Late", 5, 34),
+//		// Race Name Unknown
+//		// Late, May
+//		Date(2, "Late", 5, 34),
 
 		// Takarazuka Kinen
 		// Late, June
@@ -154,9 +203,9 @@ class Game(val myContext: Context) {
 		// Early, November
 		Date(2, "Early", 11, 45),
 
-		// Japan Cup
-		// Late, November
-		Date(2, "Late", 11, 46),
+//		// Japan Cup
+//		// Late, November
+//		Date(2, "Late", 11, 46),
 
 		// Arima Kinen
 		// Late, December
