@@ -201,6 +201,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
 		val debugModeStartSingleTrainingFailureOCRTest: Boolean = sharedPreferences.getBoolean("debugMode_startSingleTrainingFailureOCRTest", false)
 		val debugModeStartComprehensiveTrainingFailureOCRTest: Boolean = sharedPreferences.getBoolean("debugMode_startComprehensiveTrainingFailureOCRTest", false)
 		val hideComparisonResults: Boolean = sharedPreferences.getBoolean("hideComparisonResults", true)
+		val userDefinedSpecialRaces: Set<String> = sharedPreferences.getStringSet("userDefinedSpecialRaces", emptySet())!!
 		
 		// Get references to the Preference components.
 		val campaignListPreference = findPreference<ListPreference>("campaign")!!
@@ -220,6 +221,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
 		val debugModeStartSingleTrainingFailureOCRTestPreference = findPreference<CheckBoxPreference>("debugMode_startSingleTrainingFailureOCRTest")!!
 		val debugModeStartComprehensiveTrainingFailureOCRTestPreference = findPreference<CheckBoxPreference>("debugMode_startComprehensiveTrainingFailureOCRTest")!!
 		val hideComparisonResultsPreference = findPreference<CheckBoxPreference>("hideComparisonResults")!!
+		val userDefinedSpecialRacesPreference = findPreference<EditTextPreference>("userDefinedSpecialRaces")!!
 		
 		// Now set the following values from the shared preferences.
 		campaignListPreference.value = campaign

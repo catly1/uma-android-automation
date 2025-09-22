@@ -127,6 +127,45 @@ class Game(val myContext: Context) {
         }
     }
 
+	private var userDefinedSpecialRaces: List<Date> = emptyList()
+
+	private val daiwaRaces = listOf(
+		// Junior Class
+		// Asahi Hai Futurity Stakes: First Year, December 1
+		Date(1, "Early", 12, 23),
+		// Hanshin Juvenile Fillies: First Year, December 1
+		Date(1, "Early", 12, 23),
+		// Hopeful Stakes: First Year, December 2
+		Date(1, "Late", 12, 24),
+
+		// Classic Class
+		// NHK Mile Cup: Second Year, May 1
+		Date(2, "Early", 5, 33),
+		// Yasuda Kinen: Second Year, June 1
+		Date(2, "Early", 6, 35),
+		// Takarazuka Kinen: Second Year, June 2
+		Date(2, "Late", 6, 36),
+		// Japan Cup: Second Year, November 2
+		Date(2, "Late", 11, 46),
+		// Mile Championship: Second Year, November 2
+		Date(2, "Late", 11, 46),
+
+		// Senior Class
+		// Victoria Mile: Third Year, May 1
+		Date(3, "Early", 5, 57),
+		// Yasuda Kinen: Third Year, June 1
+		Date(3, "Early", 6, 59),
+		// Takarazuka Kinen: Third Year, June 2
+		Date(3, "Late", 6, 60),
+		// Queen Elizabeth II Cup: Third Year, November 1
+		Date(3, "Early", 11, 69),
+		// Japan Cup: Third Year, November 2
+		Date(3, "Late", 11, 70),
+		// Mile Championship: Third Year, November 2
+		Date(3, "Late", 11, 70)
+	)
+
+
 	private val golshiRaces = listOf(
 		// Year 1
 		// Hopeful Stakes
@@ -191,9 +230,9 @@ class Game(val myContext: Context) {
 		// Late, May
 		Date(2, "Late", 5, 34),
 
-//		// Race Name Unknown
-//		// Late, May
-//		Date(2, "Late", 5, 34),
+		// Race Name Unknown
+		// Late, May
+		Date(2, "Late", 5, 34),
 
 		// Takarazuka Kinen
 		// Late, June
@@ -203,9 +242,9 @@ class Game(val myContext: Context) {
 		// Early, November
 		Date(2, "Early", 11, 45),
 
-//		// Japan Cup
-//		// Late, November
-//		Date(2, "Late", 11, 46),
+		// Japan Cup
+		// Late, November
+		Date(2, "Late", 11, 46),
 
 		// Arima Kinen
 		// Late, December
@@ -666,7 +705,7 @@ class Game(val myContext: Context) {
 
 		// If the setting to force racing extra races is enabled, always return true.
 		if (enableForceRacing) return true
-		if (mcqueenRaces.contains(currentDate) && !raceRepeatWarningCheck) return true
+		if (userDefinedSpecialRaces.contains(currentDate) && !raceRepeatWarningCheck) return true
 		
 		return enableFarmingFans && dayNumber % daysToRunExtraRaces == 0 && !raceRepeatWarningCheck &&
 				imageUtils.findImage("race_select_extra_locked_uma_finals", tries = 1, region = imageUtils.regionBottomHalf).first == null &&
