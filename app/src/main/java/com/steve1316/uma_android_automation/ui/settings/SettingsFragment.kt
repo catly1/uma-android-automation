@@ -51,6 +51,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
 			"Satsuki Sho (Spring) - Y3 Late Apr T56",
 			"Victoria Mile - Y3 Early May T57",
 			"Yushun Himba - Y3 Late May T58",
+            "Yasuda Kinen2 - Y3 Early Jun T59",
 			"Takarazuka Kinen - Y3 Late Jun T60",
 			"Tenno Sho - Y3 Late Jun T60",
 			"Sprinters Stakes - Y3 Early Oct T67",
@@ -97,6 +98,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
 			"27:3,Late,4,56",  // Satsuki Sho (Spring)
 			"28:3,Early,5,57", // Victoria Mile
 			"29:3,Late,5,58",  // Yushun Himba
+            "30:3,Early,6,59",  // Yasuda Kinen
 			"30:3,Late,6,60",  // Takarazuka Kinen
 			"31:3,Late,6,60",  // Tenno Sho
 			"32:3,Early,10,67",// Sprinters Stakes
